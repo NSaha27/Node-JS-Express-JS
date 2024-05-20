@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title><%= pageTitle %></title>
+  </head>
+  <body>
+    <%- include("./header.ejs") %>
+    <main>
+      <section class="sec" id="add-prod-sec1">
+        <% if(status.length > 0){ %>
+        <div class="display-status"><%= status %></div>
+        <% } %>
+        <div class="addCourseForm">
+          <h2 class="formTitle"><%= pageTitle %></h2>
+          <div class="formBody">
+            <form action="<%= path %>" method="post">
+              <% if(course){ %>
+              <div class="formGroup">
+                <input
+                  type="hidden"
+                  name="crsID"
+                  id="crsID"
+                  class="formControl"
+                  value="<%= course.crsID %>"
+                />
+              </div>
+              <% } %>
+              <div class="formGroup">
+                <label for="crsName" class="formLabel">Course Name</label>
+                <br />
+                <input
+                  type="text"
+                  name="crsName"
+                  id="crsName"
+                  class="formControl"
+                  value="<% if(course){ %><%= course.crsName %><% } %>"
+                />
+              </div>
+              <div class="formGroup">
+                <label for="crsImgURL" class="formLabel">Image URL</label>
+                <br />
+                <input
+                  type="text"
+                  name="crsImgURL"
+                  id="crsImgURL"
+                  class="formControl"
+                  value="<% if(course){ %><%= course.crsImgURL %><% } %>"
+                />
+              </div>
+              <div class="formGroup">
+                <label for="crsDescription" class="formLabel"
+                  >Description</label
+                >
+                <br />
+                <textarea
+                  rows="6"
+                  name="crsDescription"
+                  id="crsDescription"
+                  class="formControl"
+                  value="<% if(course){ %><%= course.crsDescription %><% } %>"
+                ></textarea>
+              </div>
+              <div class="formGroup">
+                <label for="crsPrice" class="formLabel">Price (Rs.)</label>
+                <br />
+                <input
+                  type="number"
+                  size="0.01"
+                  name="crsPrice"
+                  id="crsPrice"
+                  class="formControl"
+                  value="<% if(course){ %><%= course.crsPrice %><% } %>"
+                />
+              </div>
+              <div class="formGroup">
+                <button type="submit" class="btn">
+                  <% if(edit){ %>Edit<% }else{ %>Add<% } %>
+                </button>
+                <button type="reset" class="btn">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

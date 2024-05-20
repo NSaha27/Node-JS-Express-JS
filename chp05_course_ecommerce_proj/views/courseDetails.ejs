@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title><%= pageTitle %></title>
+  </head>
+  <body>
+    <%- include("./header.ejs") %>
+    <main>
+      <section class="sec" id="add-crs-sec2">
+        <% if(courseDetails){ %>
+        <h1 class="crsTitle"><%= courseDetails.crsName %></h1>
+        <hr />
+        <div>
+          <img
+            src="<%= courseDetails.crsImgURL %>"
+            alt="<%= courseDetails.crsName %>"
+            class="crsImg"
+          />
+        </div>
+        <h3 class="crsPrice">Price Rs.<%= courseDetails.crsPrice %>/-</h3>
+        <div><%= courseDetails.crsDescription %></div>
+        <div class="editAddBtnsContainer">
+          <form action="/add-to-cart" method="post">
+            <input
+              type="hidden"
+              name="crsID"
+              value="<%= courseDetails.crsID %>"
+            />
+            <button type="submit" class="btn">Add to cart</button>
+          </form>
+        </div>
+        <% } %>
+      </section>
+    </main>
+  </body>
+</html>

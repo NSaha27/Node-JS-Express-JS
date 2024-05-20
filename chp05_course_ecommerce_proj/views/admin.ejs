@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title><%= pageTitle %></title>
+  </head>
+  <body>
+    <%- include("./header.ejs") %>
+    <main>
+      <section class="sec" id="sec1">
+        <% if(course.length > 0){ %> <% for(let crs of course){ %>
+        <div class="card">
+          <div class="card-head"><%= crs.crsName %></div>
+          <div class="card-body">
+            <p><img src="<%= crs.crsImgURL %>" alt="<%= crs.crsName %>" /></p>
+            <p><%= crs.crsDescription %></p>
+            <p>Rs. <span><%= crs.crsPrice %></span></p>
+          </div>
+          <div class="card-foot">
+            <a href="/edit-course/<%= crs.crsID %>?edit=true" class="btn"
+              >Edit</a
+            >
+            <form action="/delete-course" method="post">
+              <input type="hidden" name="crsID" value="<%= crs.crsID %>" />
+              <button type="submit" class="btn">Delete</button>
+            </form>
+          </div>
+        </div>
+        <% } %> <% } %>
+      </section>
+    </main>
+  </body>
+</html>
